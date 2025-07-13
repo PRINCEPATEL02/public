@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - PitchBoard</title>
+    <!-- <link rel="stylesheet" href="style1.css" />
+    <link rel="stylesheet" href="register/page/contact.css" /> -->
+    <style>
+      .contact-header {
+        background: linear-gradient(135deg, #2d3a4a 0%, #0a66c2 100%);
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        background: #b6c6ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #2d3a4a;
+      }
+
+      .logout-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .logout-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .contact-content {
+        padding: 3rem 0;
+      }
+
+      .contact-hero {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .contact-title {
+        font-size: 3rem;
+        color: #2d3a4a;
+        margin-bottom: 1rem;
+      }
+
+      .contact-subtitle {
+        font-size: 1.3rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .contact-form {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-title {
+        font-size: 1.8rem;
+        color: #2d3a4a;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #2d3a4a;
+        font-weight: 500;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1.5px solid #b6c6ff;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border 0.2s;
+        box-sizing: border-box;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border: 1.5px solid #0a66c2;
+        box-shadow: 0 2px 12px #b6c6ff55;
+      }
+
+      .form-textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1.5px solid #b6c6ff;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border 0.2s;
+        box-sizing: border-box;
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .form-textarea:focus {
+        outline: none;
+        border: 1.5px solid #0a66c2;
+        box-shadow: 0 2px 12px #b6c6ff55;
+      }
+
+      .submit-btn {
+        background: #0a66c2;
+        color: white;
+        padding: 0.8rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .submit-btn:hover {
+        background: #2d3a4a;
+      }
+
+      .contact-info {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-title {
+        font-size: 1.8rem;
+        color: #2d3a4a;
+        margin-bottom: 1.5rem;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+
+      .info-icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        color: #0a66c2;
+      }
+
+      .info-content h4 {
+        color: #2d3a4a;
+        margin-bottom: 0.3rem;
+      }
+
+      .info-content p {
+        color: #666;
+        margin: 0;
+      }
+
+      .social-links {
+        margin-top: 2rem;
+      }
+
+      .social-title {
+        font-size: 1.3rem;
+        color: #2d3a4a;
+        margin-bottom: 1rem;
+      }
+
+      .social-grid {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-link {
+        width: 50px;
+        height: 50px;
+        background: #0a66c2;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: background 0.3s;
+      }
+
+      .social-link:hover {
+        background: #2d3a4a;
+      }
+
+      .message {
+        padding: 10px 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      @media (max-width: 768px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Contact Header -->
+    <header class="contact-header">
+      <div class="header-content">
+        <div class="logo">
+          <h1>PitchBoard</h1>
+          <p>Contact Us</p>
+        </div>
+        <nav class="nav">
+          <a href="register/page/index.html" class="nav-link">Dashboard</a>
+          <a href="register/page/addpost.html" class="nav-link">Add Post</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link active">Contact</a>
+          <div class="user-info">
+            <div class="user-avatar" id="userAvatar">U</div>
+            <span id="userName">User</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Contact Content -->
+    <div class="contact-content">
+      <div class="container">
+        <!-- Contact Hero -->
+        <div class="contact-hero">
+          <h1 class="contact-title">Get In Touch</h1>
+          <p class="contact-subtitle">
+            Have a question, suggestion, or want to collaborate? We'd love to
+            hear from you!
+          </p>
+        </div>
+
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+          <!-- Contact Form -->
+          <div class="contact-form">
+            <h2 class="form-title">Send us a Message</h2>
+            <form onsubmit="handleContactSubmit(event)">
+              <div class="form-group">
+                <label class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="contactName"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-input"
+                  id="contactEmail"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Subject</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="contactSubject"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea
+                  class="form-textarea"
+                  id="contactMessage"
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <h2 class="info-title">Contact Information</h2>
+
+            <div class="info-item">
+              <div class="info-icon">📧</div>
+              <div class="info-content">
+                <h4>Email</h4>
+                <p>contact@pitchboard.com</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">📞</div>
+              <div class="info-content">
+                <h4>Phone</h4>
+                <p>+1 (555) 123-4567</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">📍</div>
+              <div class="info-content">
+                <h4>Address</h4>
+                <p>123 Innovation Street<br />Tech City, TC 12345</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">⏰</div>
+              <div class="info-content">
+                <h4>Business Hours</h4>
+                <p>
+                  Monday - Friday: 9:00 AM - 6:00 PM<br />Saturday: 10:00 AM -
+                  4:00 PM
+                </p>
+              </div>
+            </div>
+
+            <div class="social-links">
+              <h3 class="social-title">Follow Us</h3>
+              <div class="social-grid">
+                <a href="#" class="social-link">📘</a>
+                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link">📷</a>
+                <a href="#" class="social-link">💼</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>PitchBoard</h3>
+            <p>Empowering entrepreneurs to share and grow their ideas.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="index.html">Dashboard</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-section">
+            <h4>Connect</h4>
+            <a href="#" onclick="logout()">Logout</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 PitchBoard. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Check if user is logged in
+      window.onload = function () {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+        if (!isLoggedIn || !user) {
+          // Redirect to login if not logged in
+          window.location.href = "index.html";
+          return;
+        }
+
+        // Display user information
+        document.getElementById("userName").textContent = user.username;
+        document.getElementById("userAvatar").textContent = user.username
+          .charAt(0)
+          .toUpperCase();
+
+        // Pre-fill email with user's email
+        document.getElementById("contactEmail").value = user.email;
+      };
+
+      function logout() {
+        // Clear user data
+        localStorage.removeItem("user");
+        localStorage.removeItem("isLoggedIn");
+
+        // Redirect to landing page
+        window.location.href = "index.html";
+      }
+
+      function handleContactSubmit(event) {
+        event.preventDefault();
+
+        const submitBtn = event.target.querySelector(".submit-btn");
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+
+        const name = document.getElementById("contactName").value;
+        const email = document.getElementById("contactEmail").value;
+        const subject = document.getElementById("contactSubject").value;
+        const message = document.getElementById("contactMessage").value;
+
+        // Remove any existing messages
+        const existingMessage = document.querySelector(".message");
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+
+        // Simulate API call with loading state
+        setTimeout(() => {
+          // Create success message
+          const messageDiv = document.createElement("div");
+          messageDiv.className = "message success";
+          messageDiv.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <span style="font-size: 1.2rem;">✅</span>
+              <span>Thank you for your message! We'll get back to you soon.</span>
+            </div>
+          `;
+
+          // Insert message before the form
+          const form = document.querySelector("form");
+          form.parentNode.insertBefore(messageDiv, form);
+
+          // Clear form
+          form.reset();
+
+          // Pre-fill email again
+          const user = JSON.parse(localStorage.getItem("user"));
+          if (user) {
+            document.getElementById("contactEmail").value = user.email;
+          }
+
+          // Reset button
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+
+          // Auto-remove message after 5 seconds
+          setTimeout(() => {
+            if (messageDiv.parentNode) {
+              messageDiv.remove();
+            }
+          }, 5000);
+        }, 2000); // Simulate 2-second API call
+      }
+
+      // Add form validation and interactive features
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const inputs = form.querySelectorAll("input, textarea");
+
+        // Add real-time validation
+        inputs.forEach((input) => {
+          input.addEventListener("blur", function () {
+            validateField(this);
+          });
+
+          input.addEventListener("input", function () {
+            if (this.classList.contains("error")) {
+              validateField(this);
+            }
+          });
+        });
+
+        // Add character counter for message
+        const messageTextarea = document.getElementById("contactMessage");
+        const charCounter = document.createElement("div");
+        charCounter.className = "char-counter";
+        charCounter.style.cssText =
+          "font-size: 0.8rem; color: #666; text-align: right; margin-top: 0.25rem;";
+        messageTextarea.parentNode.appendChild(charCounter);
+
+        messageTextarea.addEventListener("input", function () {
+          const remaining = 1000 - this.value.length;
+          charCounter.textContent = `${remaining} characters remaining`;
+          charCounter.style.color = remaining < 100 ? "#e0245e" : "#666";
+        });
+
+        // Add social link hover effects
+        const socialLinks = document.querySelectorAll(".social-link");
+        socialLinks.forEach((link) => {
+          link.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-3px) scale(1.1)";
+          });
+
+          link.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0) scale(1)";
+          });
+        });
+      });
+
+      function validateField(field) {
+        const value = field.value.trim();
+        let isValid = true;
+        let errorMessage = "";
+
+        // Remove existing error styling
+        field.classList.remove("error");
+        const existingError = field.parentNode.querySelector(".field-error");
+        if (existingError) {
+          existingError.remove();
+        }
+
+        // Validation rules
+        if (field.required && !value) {
+          isValid = false;
+          errorMessage = "This field is required";
+        } else if (field.type === "email" && value && !isValidEmail(value)) {
+          isValid = false;
+          errorMessage = "Please enter a valid email address";
+        } else if (field.id === "contactMessage" && value.length > 1000) {
+          isValid = false;
+          errorMessage = "Message must be less than 1000 characters";
+        }
+
+        // Apply error styling if invalid
+        if (!isValid) {
+          field.classList.add("error");
+          const errorDiv = document.createElement("div");
+          errorDiv.className = "field-error";
+          errorDiv.style.cssText =
+            "color: #e0245e; font-size: 0.8rem; margin-top: 0.25rem;";
+          errorDiv.textContent = errorMessage;
+          field.parentNode.appendChild(errorDiv);
+        }
+
+        return isValid;
+      }
+
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+    </script>
+  </body>
+</html>

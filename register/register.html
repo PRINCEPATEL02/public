@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PitchBoard - Share Your Ideas</title>
+
+    <style>
+      html,
+      body,
+      .container,
+      .input-group,
+      .input-field {
+        box-sizing: border-box;
+      }
+      body {
+        background: #f4f6fb;
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #222;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .auth-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        min-height: 70vh;
+        width: 90vw;
+        max-width: 800px;
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px 0 rgba(45, 58, 74, 0.1), 0 1.5px 8px 0 #b6c6ff33;
+        overflow: hidden;
+      }
+      .auth-left {
+        flex: 1.1;
+        background: #2d3a4a;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2.5rem 1.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .auth-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1.2rem;
+        letter-spacing: 1px;
+        text-align: center;
+        color: #fff;
+      }
+      .auth-switch {
+        font-size: 1.1rem;
+        color: #b6c6ff;
+        margin-top: 1.2rem;
+        cursor: pointer;
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+      .auth-switch:hover {
+        color: #fff;
+      }
+      .auth-divider {
+        width: 2px;
+        background: #b6c6ff;
+        margin: 0 0.5rem;
+      }
+      .auth-right {
+        flex: 1.5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2.5rem 2rem;
+        background: transparent;
+      }
+      .container {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(45, 58, 74, 0.07);
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 350px;
+        box-sizing: border-box;
+      }
+      h1 {
+        margin-bottom: 1.2rem;
+        color: #2d3a4a;
+        letter-spacing: 1px;
+        font-size: 1.5rem;
+      }
+      form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+      }
+      .input-group {
+        position: relative;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .input-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.1em;
+        color: #b6c6ff;
+        pointer-events: none;
+        transition: color 0.2s;
+      }
+      .input-field {
+        width: 100%;
+        padding: 0.7rem 1.8rem 0.7rem 2.5rem;
+        border: 1.5px solid #b6c6ff;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+        outline: none;
+        color: #2d3a4a;
+        background: #f4f6fb;
+        box-sizing: border-box;
+        display: block;
+      }
+      .input-field:focus {
+        border: 1.5px solid #0a66c2;
+        box-shadow: 0 2px 12px #b6c6ff55, 0 0 0 2px #0a66c233;
+        background: #fff;
+      }
+      .input-field:focus ~ .floating-label,
+      .input-field:not(:placeholder-shown):not(:focus) ~ .floating-label {
+        top: -10px;
+        left: 10px;
+        font-size: 0.85em;
+        color: #0a66c2;
+        background: #fff;
+        padding: 0 4px;
+      }
+      .floating-label {
+        position: absolute;
+        left: 2.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+        font-size: 1em;
+        pointer-events: none;
+        background: transparent;
+        transition: 0.2s;
+        max-width: calc(100% - 4.5rem);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /* Validation feedback (CSS only, for demo) */
+      .input-field:invalid:not(:focus):not(:placeholder-shown) {
+        border: 1.5px solid #e0245e;
+        background: #fff0f3;
+      }
+      .input-field:valid:not(:focus):not(:placeholder-shown) {
+        border: 1.5px solid #1db954;
+        background: #f0fff4;
+      }
+      .input-group .valid-icon,
+      .input-group .invalid-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.1em;
+        display: none;
+      }
+      .input-field:valid:not(:focus):not(:placeholder-shown) ~ .valid-icon {
+        display: block;
+        color: #1db954;
+      }
+      .input-field:invalid:not(:focus):not(:placeholder-shown) ~ .invalid-icon {
+        display: block;
+        color: #e0245e;
+      }
+      button {
+        margin-top: 0.5rem;
+        padding: 0.8rem 0;
+        background: #2d3a4a;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px #b6c6ff33;
+      }
+      button:hover {
+        background: #0a66c2;
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 4px 16px #b6c6ff55;
+      }
+      .login-link {
+        margin-top: 1.2rem;
+        font-size: 0.97rem;
+        color: #666;
+      }
+      .login-link a {
+        color: #0a66c2;
+        text-decoration: none;
+        font-weight: 500;
+        transition: text-decoration 0.2s, color 0.2s;
+      }
+      .login-link a:hover {
+        color: #b6c6ff;
+        text-decoration: underline;
+      }
+      @media (max-width: 900px) {
+        .auth-wrapper {
+          flex-direction: column;
+          min-height: unset;
+          width: 98vw;
+          max-width: 98vw;
+        }
+        .auth-divider {
+          width: 100%;
+          height: 2px;
+          margin: 0 0 1rem 0;
+          background: #b6c6ff;
+        }
+        .auth-left,
+        .auth-right {
+          min-width: 0;
+          width: 100%;
+          padding: 2rem 1rem;
+        }
+      }
+      @media (max-width: 500px) {
+        .container {
+          padding: 1.2rem 0.5rem;
+        }
+        .auth-title {
+          font-size: 1.3rem;
+        }
+      }
+      .message {
+        padding: 10px 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-weight: 500;
+        text-align: center;
+      }
+      .message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-wrapper">
+      <!-- Left Side - Welcome -->
+      <div class="auth-left">
+        <h1 class="auth-title">Welcome to PitchBoard</h1>
+        <p style="text-align: center; margin-bottom: 2rem; color: #b6c6ff">
+          Join thousands of entrepreneurs sharing and discovering innovative
+          ideas
+        </p>
+        <div class="auth-switch" onclick="toggleAuth()">
+          <span id="switchText">Don't have an account? Register</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="auth-divider"></div>
+
+      <!-- Right Side - Forms -->
+      <div class="auth-right">
+        <!-- Login Form -->
+        <div class="container" id="loginForm">
+          <h1>Login</h1>
+          <form onsubmit="handleLogin(event)">
+            <div class="input-group">
+              <span class="input-icon">📧</span>
+              <input
+                type="email"
+                id="loginEmail"
+                class="input-field"
+                placeholder=" "
+                required
+              />
+              <label class="floating-label">Email</label>
+              <span class="valid-icon">✓</span>
+              <span class="invalid-icon">✗</span>
+            </div>
+            <div class="input-group">
+              <span class="input-icon">🔒</span>
+              <input
+                type="password"
+                id="loginPassword"
+                class="input-field"
+                placeholder=" "
+                required
+              />
+              <label class="floating-label">Password</label>
+              <span class="valid-icon">✓</span>
+              <span class="invalid-icon">✗</span>
+            </div>
+            <button type="submit">Login</button>
+          </form>
+          <div class="login-link">
+            Don't have an account?
+            <a href="#" onclick="toggleAuth()">Register</a>
+          </div>
+        </div>
+
+        <!-- Register Form -->
+        <div class="container" id="registerForm" style="display: none">
+          <h1>Register</h1>
+          <form onsubmit="handleRegister(event)">
+            <div class="input-group">
+              <span class="input-icon">👤</span>
+              <input
+                type="text"
+                id="registerUsername"
+                class="input-field"
+                placeholder=" "
+                required
+              />
+              <label class="floating-label">Username</label>
+              <span class="valid-icon">✓</span>
+              <span class="invalid-icon">✗</span>
+            </div>
+            <div class="input-group">
+              <span class="input-icon">📧</span>
+              <input
+                type="email"
+                id="registerEmail"
+                class="input-field"
+                placeholder=" "
+                required
+              />
+              <label class="floating-label">Email</label>
+              <span class="valid-icon">✓</span>
+              <span class="invalid-icon">✗</span>
+            </div>
+            <div class="input-group">
+              <span class="input-icon">🔒</span>
+              <input
+                type="password"
+                id="registerPassword"
+                class="input-field"
+                placeholder=" "
+                required
+                minlength="6"
+              />
+              <label class="floating-label">Password</label>
+              <span class="valid-icon">✓</span>
+              <span class="invalid-icon">✗</span>
+            </div>
+            <div class="input-group">
+              <span class="input-icon">🔒</span>
+              <input
+                type="password"
+                id="confirmPassword"
+                class="input-field"
+                placeholder=" "
+                required
+                minlength="6"
+              />
+              <label class="floating-label">Confirm Password</label>
+              <span class="valid-icon">✓</span>
+              <span class="invalid-icon">✗</span>
+            </div>
+            <button type="submit">Register</button>
+          </form>
+          <div class="login-link">
+            Already have an account?
+            <a href="#" onclick="toggleAuth()">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Toggle between login and register forms
+      function toggleAuth() {
+        const loginForm = document.getElementById("loginForm");
+        const registerForm = document.getElementById("registerForm");
+        const switchText = document.getElementById("switchText");
+
+        if (loginForm.style.display === "none") {
+          loginForm.style.display = "block";
+          registerForm.style.display = "none";
+          switchText.textContent = "Don't have an account? Register";
+        } else {
+          loginForm.style.display = "none";
+          registerForm.style.display = "block";
+          switchText.textContent = "Already have an account? Login";
+        }
+
+        // Clear any existing messages
+        const existingMessage = document.querySelector(".message");
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+      }
+
+      // Handle Login
+      async function handleLogin(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+        if (!email || !password) {
+          showMessage("Please fill in all fields.", "error");
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            "http://localhost:5000/api/users/login",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email, password }),
+            }
+          );
+
+          const data = await response.json();
+
+          if (response.ok) {
+            showMessage("Login successful! Redirecting...", "success");
+            // Store user data in localStorage
+            localStorage.setItem("user", JSON.stringify(data.user));
+            localStorage.setItem("isLoggedIn", "true");
+
+            // Redirect to dashboard page after 1 second
+            setTimeout(() => {
+              window.location.href = "page/index.html";
+            }, 1000);
+          } else {
+            showMessage(
+              data.message || "Login failed. Please try again.",
+              "error"
+            );
+          }
+        } catch (error) {
+          console.error("Login error:", error);
+          showMessage(
+            "Server error. Please check your connection and try again.",
+            "error"
+          );
+        }
+      }
+
+      // Handle Register
+      async function handleRegister(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("registerUsername").value;
+        const email = document.getElementById("registerEmail").value;
+        const password = document.getElementById("registerPassword").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        // Validation
+        if (!username || !email || !password || !confirmPassword) {
+          showMessage("Please fill in all fields.", "error");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          showMessage("Passwords do not match.", "error");
+          return;
+        }
+
+        if (password.length < 6) {
+          showMessage("Password must be at least 6 characters long.", "error");
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            "http://localhost:5000/api/users/register",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, email, password }),
+            }
+          );
+
+          const data = await response.json();
+
+          if (response.ok) {
+            showMessage(
+              "Registration successful! You can now login.",
+              "success"
+            );
+            // Clear form
+            document
+              .getElementById("registerForm")
+              .querySelector("form")
+              .reset();
+            // Switch to login form
+            setTimeout(() => {
+              toggleAuth();
+            }, 1000);
+          } else {
+            showMessage(
+              data.message || "Registration failed. Please try again.",
+              "error"
+            );
+          }
+        } catch (error) {
+          console.error("Registration error:", error);
+          showMessage(
+            "Server error. Please check your connection and try again.",
+            "error"
+          );
+        }
+      }
+
+      // Show message function
+      function showMessage(message, status) {
+        // Remove any existing messages
+        const existingMessage = document.querySelector(".message");
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+
+        // Create new message element
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `message ${status}`;
+        messageDiv.textContent = message;
+
+        // Insert message before the current form
+        const currentForm = document.querySelector(
+          '.container[style*="display: block"], .container:not([style*="display: none"])'
+        );
+        if (currentForm) {
+          currentForm.insertBefore(
+            messageDiv,
+            currentForm.querySelector("form")
+          );
+        }
+
+        // Auto-remove message after 5 seconds
+        setTimeout(() => {
+          if (messageDiv.parentNode) {
+            messageDiv.remove();
+          }
+        }, 5000);
+      }
+
+      // Check if user is already logged in
+      window.onload = function () {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        if (isLoggedIn === "true") {
+          // Redirect to dashboard page if already logged in
+          window.location.href = "page/index.html";
+        }
+      };
+    </script>
+  </body>
+</html>

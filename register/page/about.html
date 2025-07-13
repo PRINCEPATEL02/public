@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    
+  
+  </head>
+  <style>
+    /* Reset and base styles */
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f6fb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Optional */
+    color: white;
+    padding: 10px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+
+/* Navbar styles */
+
+.navbar {
+    width: 98%;
+    background: #2d3a4a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 44px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-left: 50%;
+    letter-spacing: 1px;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 18px;
+    margin-right: 5%;
+    padding: 0;
+}
+
+.navbar-menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.98em;
+    transition: color 0.2s;
+}
+
+.navbar-menu li a:hover {
+    color: #b6c6ff;
+}
+
+
+/* Footer styles */
+
+.footer {
+    width: 100%;
+    background: #2d3a4a;
+    color: #fff;
+    padding: 14px 0 8px 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04);
+    margin-top: auto;
+    position: relative;
+    bottom: 20px;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.footer-menu {
+    list-style: none;
+    display: flex;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.footer-menu li a {
+    color: #b6c6ff;
+    text-decoration: none;
+    font-size: 0.96em;
+    transition: color 0.2s;
+}
+
+.footer-menu li a:hover {
+    color: #fff;
+}
+
+
+/* Posts vertical layout */
+
+.vertical-posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+    max-width: 600px;
+    margin: 32px auto 0 auto;
+}
+
+.post-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    width: 100%;
+    max-width: 600px;
+    padding: 24px 24px 18px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: box-shadow 0.2s;
+}
+
+.post-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+}
+
+.post-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0;
+    color: #0a66c2;
+}
+
+.post-description {
+    color: #333;
+    font-size: 1em;
+}
+
+.post-email {
+    color: #0077cc;
+    text-decoration: underline;
+    font-size: 0.98em;
+}
+
+
+/* Like button styles */
+
+.like-btn {
+    background: #fff;
+    border: 1px solid #e0e7ff;
+    border-radius: 6px;
+    padding: 7px 16px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s, color 0.2s;
+    color: #222;
+}
+
+.like-btn:hover {
+    background: #b6c6ff;
+}
+
+.like-btn .like-symbol {
+    font-size: 1.2em;
+    color: inherit;
+}
+
+.like-btn.liked {
+    background: #ffe6ef;
+    color: #e0245e;
+    border: 1px solid #e0245e;
+}
+
+.like-count {
+    font-weight: 500;
+}
+
+
+/* Image grid for posts */
+
+.post-images {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.post-images .post-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e6e9ec;
+    background: #f4f6fb;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+
+/* LinkedIn-style image upload section */
+
+.image-upload-container {
+    display: flex;
+    gap: 32px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 32px 28px;
+    max-width: 700px;
+    margin: 36px auto 0 auto;
+    align-items: flex-start;
+}
+
+.image-upload-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.image-upload-label {
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.image-upload-input {
+    padding: 8px;
+    border: 1px solid #e6e9ec;
+    border-radius: 6px;
+    background: #f8f9fa;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.upload-btn {
+    margin-top: 8px;
+    padding: 10px 0;
+    background: #0a66c2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+
+.upload-btn:hover {
+    background: #004182;
+}
+
+.image-preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 220px;
+}
+
+.image-preview-box {
+    width: 220px;
+    height: 220px;
+    border: 2px dashed #e6e9ec;
+    border-radius: 10px;
+    background: #f4f6fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.image-preview-box img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+.image-preview-placeholder {
+    color: #b0b3b8;
+    font-size: 1em;
+    text-align: center;
+}
+
+
+/* Responsive styles */
+
+@media (max-width: 700px) {
+    .navbar,
+    .footer {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+    .vertical-posts,
+    .post-card {
+        max-width: 98vw;
+        width: 98vw;
+    }
+    .post-card {
+        padding: 12px 6px 10px 6px;
+    }
+    .navbar-logo img {
+        height: 22px;
+    }
+    .navbar-title {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 900px) {
+    .image-upload-container {
+        flex-direction: column;
+        gap: 18px;
+        padding: 18px 6px;
+    }
+    .image-preview-box {
+        width: 98vw;
+        max-width: 320px;
+        height: 180px;
+    }
+}
+/* General page background */
+body {
+  background: linear-gradient(135deg, #f4f6fb 0%, #e0e7ff 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* About section styling */
+.about-section {
+  background: #fff;
+  max-width: 700px;
+  margin: 48px auto 32px auto;
+  padding: 40px 32px 32px 32px;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(44, 62, 80, 0.09);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.about-section h1 {
+  font-size: 2.3em;
+  color: #0a66c2;
+  margin-bottom: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 1.3em;
+  color: #222;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  border-left: 4px solid #0a66c2;
+  padding-left: 10px;
+  background: linear-gradient(90deg, #e0e7ff 60%, #fff 100%);
+}
+
+.about-section p {
+  font-size: 1.08em;
+  color: #444;
+  line-height: 1.7;
+  margin: 0 0 8px 0;
+  text-align: justify;
+}
+
+.about-section::before {
+  content: "🚀";
+  font-size: 2.5em;
+  display: block;
+  text-align: center;
+  margin-bottom: 12px;
+  opacity: 0.85;
+}
+
+@media (max-width: 800px) {
+  .about-section {
+    max-width: 98vw;
+    padding: 18px 8vw 18px 8vw;
+  }
+  .about-section h1 {
+    font-size: 1.5em;
+  }
+  .about-section h2 {
+    font-size: 1.1em;
+  }
+}
+  </style>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <span class="navbar-title">PitchBoard</span>
+      </div>
+      <ul class="navbar-menu">
+                    <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="about-section">
+        <h1>About PitchBoard</h1>
+        <p>
+          PitchBoard is a platform designed to connect startups with potential
+          investors. Our mission is to simplify the fundraising process and
+          provide startups with the tools they need to succeed.
+        </p>
+        <h2>Our Vision</h2>
+        <p>
+          We envision a world where every innovative idea has the opportunity to
+          thrive, and every investor can find the next big thing.
+        </p>
+        <h2>Our Team</h2>
+        <p>
+          Our team consists of experienced entrepreneurs, investors, and
+          technology experts dedicated to supporting the startup ecosystem.
+        </p>
+      </section>
+    </main>
+   
+
+
+    <footer class="footer">
+      <div class="footer-content">
+        <span>&copy; 2024 PitchBoard. All rights reserved.</span>
+        <ul class="footer-menu">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </footer>
+   
+  </body>
+</html>

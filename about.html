@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - PitchBoard</title>
+    <!-- <link rel="stylesheet" href="style1.css" /> -->
+    <style>
+      .about-header {
+        background: linear-gradient(135deg, #2d3a4a 0%, #0a66c2 100%);
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        background: #b6c6ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #2d3a4a;
+      }
+
+      .logout-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .logout-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .about-content {
+        padding: 3rem 0;
+      }
+
+      .about-hero {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .about-title {
+        font-size: 3rem;
+        color: #2d3a4a;
+        margin-bottom: 1rem;
+      }
+
+      .about-subtitle {
+        font-size: 1.3rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      .mission-section {
+        background: white;
+        padding: 3rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+      }
+
+      .mission-title {
+        font-size: 2rem;
+        color: #2d3a4a;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .mission-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+        text-align: center;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .value-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .value-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .value-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .value-title {
+        font-size: 1.5rem;
+        color: #2d3a4a;
+        margin-bottom: 1rem;
+      }
+
+      .value-description {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .team-section {
+        background: white;
+        padding: 3rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+      }
+
+      .team-title {
+        font-size: 2rem;
+        color: #2d3a4a;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .team-description {
+        text-align: center;
+        color: #666;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #0a66c2;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: #666;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- About Header -->
+    <header class="about-header">
+      <div class="header-content">
+        <div class="logo">
+          <h1>PitchBoard</h1>
+          <p>About Us</p>
+        </div>
+        <nav class="nav">
+          <a href="register/page/index.html" class="nav-link">Dashboard</a>
+          <a href="register/page/addpost.html" class="nav-link">Add Post</a>
+          <a href="about.html" class="nav-link active">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <div class="user-info">
+            <div class="user-avatar" id="userAvatar">U</div>
+            <span id="userName">User</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- About Content -->
+    <div class="about-content">
+      <div class="container">
+        <!-- About Hero -->
+        <div class="about-hero">
+          <h1 class="about-title">About PitchBoard</h1>
+          <p class="about-subtitle">
+            We're on a mission to democratize entrepreneurship by connecting
+            innovative minds and turning great ideas into successful businesses.
+          </p>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="mission-section">
+          <h2 class="mission-title">Our Mission</h2>
+          <p class="mission-text">
+            PitchBoard was founded with a simple yet powerful vision: to create
+            a global platform where entrepreneurs, innovators, and investors can
+            connect, collaborate, and bring groundbreaking ideas to life. We
+            believe that great ideas can come from anywhere, and everyone
+            deserves the opportunity to turn their vision into reality.
+          </p>
+        </div>
+
+        <!-- Values Grid -->
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">💡</div>
+            <h3 class="value-title">Innovation</h3>
+            <p class="value-description">
+              We celebrate creativity and encourage out-of-the-box thinking.
+              Every great business starts with a bold idea.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h3 class="value-title">Collaboration</h3>
+            <p class="value-description">
+              We believe in the power of community. Together, we can achieve
+              more than we ever could alone.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">🚀</div>
+            <h3 class="value-title">Growth</h3>
+            <p class="value-description">
+              We're committed to helping entrepreneurs grow their ideas, skills,
+              and networks.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <h3 class="value-title">Impact</h3>
+            <p class="value-description">
+              We want to create positive change in the world through
+              entrepreneurship and innovation.
+            </p>
+          </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="team-section">
+          <h2 class="team-title">Our Community</h2>
+          <p class="team-description">
+            PitchBoard is more than just a platform - it's a thriving community
+            of entrepreneurs, investors, mentors, and innovators from around the
+            world. We're united by our passion for innovation and our belief in
+            the power of great ideas.
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">10,000+</div>
+              <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">5,000+</div>
+              <div class="stat-label">Ideas Shared</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Successful Projects</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Countries</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>PitchBoard</h3>
+            <p>Empowering entrepreneurs to share and grow their ideas.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="index.html">Dashboard</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+          </div>
+          <div class="footer-section">
+            <h4>Connect</h4>
+            <a href="#" onclick="logout()">Logout</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 PitchBoard. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Check if user is logged in
+      window.onload = function () {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+        if (!isLoggedIn || !user) {
+          // Redirect to login if not logged in
+          window.location.href = "index.html";
+          return;
+        }
+
+        // Display user information
+        document.getElementById("userName").textContent = user.username;
+        document.getElementById("userAvatar").textContent = user.username
+          .charAt(0)
+          .toUpperCase();
+      };
+
+      function logout() {
+        // Clear user data
+        localStorage.removeItem("user");
+        localStorage.removeItem("isLoggedIn");
+
+        // Redirect to landing page
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

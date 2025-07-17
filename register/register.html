@@ -393,6 +393,8 @@
       </div>
     </div>
     <script>
+      const API_BASE_URL = "https://pitch-board.onrender.com";
+
       // Toggle between login and register forms
       function toggleAuth() {
         const loginForm = document.getElementById("loginForm");
@@ -429,16 +431,13 @@
         }
 
         try {
-          const response = await fetch(
-            "http://localhost:5000/api/users/login",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ email, password }),
-            }
-          );
+          const response = await fetch(`${API_BASE_URL}/api/users/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          });
 
           const data = await response.json();
 
@@ -494,16 +493,13 @@
         }
 
         try {
-          const response = await fetch(
-            "http://localhost:5000/api/users/register",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ username, email, password }),
-            }
-          );
+          const response = await fetch(`${API_BASE_URL}/api/users/register`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, email, password }),
+          });
 
           const data = await response.json();
 
@@ -577,30 +573,29 @@
         }
       };
 
-
       document.oncontextmenu = () => {
         alert("Right-click is disabled on this page.");
         return false;
-    }
-    document.onkeydown = (e) => {
+      };
+      document.onkeydown = (e) => {
         if (e.key === "F12") {
-            alert("Inspect Element is disabled on this page.");
-            return false;
+          alert("Inspect Element is disabled on this page.");
+          return false;
         }
         if (e.ctrlKey && e.shiftKey && e.key === "u") {
-            alert("Inspect Element is disabled on this page.");
-            return false;
+          alert("Inspect Element is disabled on this page.");
+          return false;
         }
 
         if (e.ctrlKey && e.key === "c") {
-            alert("View Source is disabled on this page.");
-            return false;
+          alert("View Source is disabled on this page.");
+          return false;
         }
         if (e.ctrlKey && e.key === "v") {
-            alert("Saving this page is disabled.");
-            return false;
+          alert("Saving this page is disabled.");
+          return false;
         }
-    }
+      };
     </script>
   </body>
 </html>

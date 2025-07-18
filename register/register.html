@@ -393,14 +393,14 @@
       </div>
     </div>
     <script>
-      const API_BASE_URL = "https://pitch-board.onrender.com";
 
-      // Toggle between login and register forms
+
+
       function toggleAuth() {
         const loginForm = document.getElementById("loginForm");
         const registerForm = document.getElementById("registerForm");
         const switchText = document.getElementById("switchText");
-
+      
         if (loginForm.style.display === "none") {
           loginForm.style.display = "block";
           registerForm.style.display = "none";
@@ -410,26 +410,29 @@
           registerForm.style.display = "block";
           switchText.textContent = "Already have an account? Login";
         }
-
+      
         // Clear any existing messages
         const existingMessage = document.querySelector(".message");
         if (existingMessage) {
           existingMessage.remove();
         }
       }
-
+      
+      // Base URL (localhost only)
+      const API_BASE_URL = "https://my-backend-3dxb.onrender.com";
+      
       // Handle Login
       async function handleLogin(event) {
         event.preventDefault();
-
+      
         const email = document.getElementById("loginEmail").value;
         const password = document.getElementById("loginPassword").value;
-
+      
         if (!email || !password) {
           showMessage("Please fill in all fields.", "error");
           return;
         }
-
+      
         try {
           const response = await fetch(`${API_BASE_URL}/api/users/login`, {
             method: "POST",
@@ -438,60 +441,50 @@
             },
             body: JSON.stringify({ email, password }),
           });
-
+      
           const data = await response.json();
-
+      
           if (response.ok) {
             showMessage("Login successful! Redirecting...", "success");
-            // Store user data in localStorage
             localStorage.setItem("user", JSON.stringify(data.user));
             localStorage.setItem("isLoggedIn", "true");
-
-            // Redirect to dashboard page after 1 second
+      
             setTimeout(() => {
               window.location.href = "page/index.html";
             }, 1000);
           } else {
-            showMessage(
-              data.message || "Login failed. Please try again.",
-              "error"
-            );
+            showMessage(data.message || "Login failed. Please try again.", "error");
           }
         } catch (error) {
           console.error("Login error:", error);
-          showMessage(
-            "Server error. Please check your connection and try again.",
-            "error"
-          );
+          showMessage("Server error. Please check your connection and try again.", "error");
         }
       }
-
+      
       // Handle Register
       async function handleRegister(event) {
         event.preventDefault();
-
+      
         const username = document.getElementById("registerUsername").value;
         const email = document.getElementById("registerEmail").value;
         const password = document.getElementById("registerPassword").value;
-        const confirmPassword =
-          document.getElementById("confirmPassword").value;
-
-        // Validation
+        const confirmPassword = document.getElementById("confirmPassword").value;
+      
         if (!username || !email || !password || !confirmPassword) {
           showMessage("Please fill in all fields.", "error");
           return;
         }
-
+      
         if (password !== confirmPassword) {
           showMessage("Passwords do not match.", "error");
           return;
         }
-
+      
         if (password.length < 6) {
           showMessage("Password must be at least 6 characters long.", "error");
           return;
         }
-
+      
         try {
           const response = await fetch(`${API_BASE_URL}/api/users/register`, {
             method: "POST",
@@ -500,79 +493,58 @@
             },
             body: JSON.stringify({ username, email, password }),
           });
-
+      
           const data = await response.json();
-
+      
           if (response.ok) {
-            showMessage(
-              "Registration successful! You can now login.",
-              "success"
-            );
-            // Clear form
-            document
-              .getElementById("registerForm")
-              .querySelector("form")
-              .reset();
-            // Switch to login form
+            showMessage("Registration successful! You can now login.", "success");
+            document.getElementById("registerForm").querySelector("form").reset();
             setTimeout(() => {
               toggleAuth();
             }, 1000);
           } else {
-            showMessage(
-              data.message || "Registration failed. Please try again.",
-              "error"
-            );
+            showMessage(data.message || "Registration failed. Please try again.", "error");
           }
         } catch (error) {
           console.error("Registration error:", error);
-          showMessage(
-            "Server error. Please check your connection and try again.",
-            "error"
-          );
+          showMessage("Server error. Please check your connection and try again.", "error");
         }
       }
-
+      
       // Show message function
       function showMessage(message, status) {
-        // Remove any existing messages
         const existingMessage = document.querySelector(".message");
         if (existingMessage) {
           existingMessage.remove();
         }
-
-        // Create new message element
+      
         const messageDiv = document.createElement("div");
         messageDiv.className = `message ${status}`;
         messageDiv.textContent = message;
-
-        // Insert message before the current form
+      
         const currentForm = document.querySelector(
           '.container[style*="display: block"], .container:not([style*="display: none"])'
         );
         if (currentForm) {
-          currentForm.insertBefore(
-            messageDiv,
-            currentForm.querySelector("form")
-          );
+          currentForm.insertBefore(messageDiv, currentForm.querySelector("form"));
         }
-
-        // Auto-remove message after 5 seconds
+      
         setTimeout(() => {
           if (messageDiv.parentNode) {
             messageDiv.remove();
           }
         }, 5000);
       }
-
-      // Check if user is already logged in
+      
+      // Auto redirect if already logged in
       window.onload = function () {
         const isLoggedIn = localStorage.getItem("isLoggedIn");
         if (isLoggedIn === "true") {
-          // Redirect to dashboard page if already logged in
           window.location.href = "page/index.html";
         }
       };
-
+      
+      // Disable right click and dev tools
       document.oncontextmenu = () => {
         alert("Right-click is disabled on this page.");
         return false;
@@ -586,7 +558,6 @@
           alert("Inspect Element is disabled on this page.");
           return false;
         }
-
         if (e.ctrlKey && e.key === "c") {
           alert("View Source is disabled on this page.");
           return false;
@@ -596,6 +567,9 @@
           return false;
         }
       };
+      
+      
     </script>
   </body>
+</html>
 </html>

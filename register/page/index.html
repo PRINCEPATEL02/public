@@ -2011,8 +2011,6 @@
         animation: alertBounce 0.6s ease-out;
       `;
 
-     
-
       // Add to body
       document.body.appendChild(overlay);
       overlay.appendChild(alertContainer);
@@ -2067,7 +2065,7 @@
       if (staticSuccessMessage) staticSuccessMessage.style.display = "none";
       if (staticErrorMessage) staticErrorMessage.style.display = "none";
 
-      // Create a simple success message first
+      // Create the notification with your custom message
       const successMessage = document.createElement("div");
       successMessage.id = "dynamicSuccessMessage";
       successMessage.style.cssText = `
@@ -2087,20 +2085,27 @@
         <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
           <span style="font-size: 2rem;">🎉</span>
           <div>
-            <div style="font-size: 1.4rem; margin-bottom: 0.3rem;">Success!</div>
-            <div style="font-size: 1rem; opacity: 0.9;">Your post has been created successfully!</div>
+            <div style="font-size: 1.4rem; margin-bottom: 0.3rem;">Your innovation has been shared successfully!</div>
           </div>
           <span style="font-size: 2rem;">🎉</span>
         </div>
       `;
 
-      // Insert the message in the dashboard messages section
-      const dashboardMessages = document.getElementById("dashboardMessages");
-      if (dashboardMessages) {
-        dashboardMessages.appendChild(successMessage);
+      // Insert the message below the Add New Post button
+      const welcomeActions = document.querySelector(".welcome-actions");
+      if (welcomeActions) {
+        welcomeActions.parentNode.insertBefore(
+          successMessage,
+          welcomeActions.nextSibling
+        );
       } else {
-        // Fallback: append to body
-        document.body.appendChild(successMessage);
+        // Fallback: append to dashboardMessages
+        const dashboardMessages = document.getElementById("dashboardMessages");
+        if (dashboardMessages) {
+          dashboardMessages.appendChild(successMessage);
+        } else {
+          document.body.appendChild(successMessage);
+        }
       }
 
       // Remove the message after 5 seconds

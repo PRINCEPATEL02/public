@@ -585,7 +585,29 @@
         return emailRegex.test(email);
       }
 
-     
+      document.oncontextmenu = () => {
+        alert("Right-click is disabled on this page.");
+        return false;
+    }
+    document.onkeydown = (e) => {
+        if (e.key === "F12") {
+            alert("Inspect Element is disabled on this page.");
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.key === "u") {
+            alert("Inspect Element is disabled on this page.");
+            return false;
+        }
+
+        if (e.ctrlKey && e.key === "c") {
+            alert("View Source is disabled on this page.");
+            return false;
+        }
+        if (e.ctrlKey && e.key === "v") {
+            alert("Saving this page is disabled.");
+            return false;
+        }
+    }
     </script>
   </body>
 </html>

@@ -2258,54 +2258,60 @@
     }
 
     // Display posts in the grid
-    function displayPosts() {
-      const ideasList = document.getElementById("recentIdeasList");
+      function displayPosts() {
+        const ideasList = document.getElementById("recentIdeasList");
 
-      if (posts.length === 0) {
-        ideasList.innerHTML = `
-            <div class="empty-state">
-              <div class="empty-state-icon">📝</div>
-              <div class="empty-state-text">No posts yet</div>
-              <div class="empty-state-subtext">Be the first to share an idea!</div>
-            </div>
-          `;
-        return;
-      }
+        if (posts.length === 0) {
+          ideasList.innerHTML = `
+              <div class="empty-state">
+                <div class="empty-state-icon">📝</div>
+                <div class="empty-state-text">No posts yet</div>
+                <div class="empty-state-subtext">Be the first to share an idea!</div>
+              </div>
+            `;
+          return;
+        }
 
-      // Sort posts by creation date (newest first)
-      const sortedPosts = [...posts].sort((a, b) => {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      });
+        // Sort posts by creation date (newest first)
+        const sortedPosts = [...posts].sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
 
-      console.log("Displaying posts:", sortedPosts.length);
+        console.log("Displaying posts:", sortedPosts.length);
 
-      ideasList.innerHTML = sortedPosts
-        .map(
-          (post) => `
-          <div class="idea-card" data-post-id="${post._id}">
-            <div class="idea-card-header">
-              <div>
-                <div class="idea-card-title">${escapeHtml(post.title)}</div>
-                <div class="idea-card-author">by ${escapeHtml(post.email)}</div>
+        ideasList.innerHTML = sortedPosts
+          .map(
+            (post) => `
+            <div class="idea-card" data-post-id="${post._id}">
+              <div class="idea-card-header">
+                <div>
+                  <div class="idea-card-title">${escapeHtml(post.title)}</div>
+                  <div class="idea-card-author">by ${escapeHtml(post.email)}</div>
+                </div>
+              </div>
+              <div class="idea-card-description">${escapeHtml(
+                post.description
+              )}</div>
+              ${
+                post.image
+                  ? `<img src="${
+                      post.image.startsWith("http") ? post.image : "https://my-backend-1-3144.onrender.com/" + post.image
+                    }" alt="Post image" class="idea-card-image" onerror="this.remove()">`
+                  : ""
+              }
+
+              <div class="idea-card-footer">
+                <div class="idea-card-date">${
+                  post.createdAt && !isNaN(new Date(post.createdAt))
+                    ? formatDate(post.createdAt)
+                    : "Unknown date"
+                }</div>
               </div>
             </div>
-            <div class="idea-card-description">${escapeHtml(
-              post.description
-            )}</div>
-            ${
-              post.image
-                ? `<img src="https://my-backend-1-3144.onrender.com/${post.image}" alt="Post image" class="idea-card-image" onerror="this.remove()">`
-                : ""
-            }
-
-            <div class="idea-card-footer">
-              <div class="idea-card-date">${formatDate(post.createdAt)}</div>
-            </div>
-          </div>
-        `
-        )
-        .join("");
-    }
+          `
+          )
+          .join("");
+      }
 
     // Enhanced form functionality
     function initializeEnhancedForm() {
@@ -2465,6 +2471,20 @@
           formData.append("image", imageFile);
         }
 
+        // Optimistically add the new post to UI before backend response
+        const tempPostId = `temp-${Date.now()}`;
+        const newPost = {
+          _id: tempPostId,
+          title: title,
+          description: description,
+          category: category,
+          email: user.email,
+          image: imageFile ? URL.createObjectURL(imageFile) : null,
+          createdAt: new Date().toISOString(),
+        };
+        posts.unshift(newPost);
+        displayPosts();
+
         try {
           console.log("Attempting to connect to backend...");
           const response = await fetch(
@@ -2497,9 +2517,12 @@
               imagePreviewContainer.style.display = "none";
             }
 
-            // Add the new post to the beginning of the posts array
-            posts.unshift(data);
-            displayPosts();
+            // Replace the temp post with the real post data
+            const tempIndex = posts.findIndex((p) => p._id === tempPostId);
+            if (tempIndex !== -1) {
+              posts[tempIndex] = data;
+              displayPosts();
+            }
 
             // Highlight the new post briefly
             setTimeout(() => {
@@ -2516,6 +2539,9 @@
                 }, 2000);
               }
             }, 100);
+
+            // Dynamically reload posts from backend after submission
+            loadPosts();
           } else {
             const errorData = await response.json();
             console.error("Server error:", errorData);
@@ -2523,6 +2549,13 @@
           }
         } catch (error) {
           console.error("Error sharing post:", error);
+
+          // Remove the optimistic post from UI
+          const tempIndex = posts.findIndex((p) => p._id === tempPostId);
+          if (tempIndex !== -1) {
+            posts.splice(tempIndex, 1);
+            displayPosts();
+          }
 
           // Close the modal first
           togglePostCreation();
@@ -2606,28 +2639,6 @@
     }
 
 
-     document.oncontextmenu = () => {
-        alert("Right-click is disabled on this page.");
-        return false;
-    }
-    document.onkeydown = (e) => {
-        if (e.key === "F12") {
-            alert("Inspect Element is disabled on this page.");
-            return false;
-        }
-        if (e.ctrlKey && e.shiftKey && e.key === "u") {
-            alert("Inspect Element is disabled on this page.");
-            return false;
-        }
-
-        if (e.ctrlKey && e.key === "c") {
-            alert("View Source is disabled on this page.");
-            return false;
-        }
-        if (e.ctrlKey && e.key === "v") {
-            alert("Saving this page is disabled.");
-            return false;
-        }
-    }
+     
   </script>
 </html>

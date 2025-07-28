@@ -11,10 +11,293 @@
 
     <style>
       /* Reset and base styles */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      
+
+      /* Buttons */
+      .btn {
+        padding: 0.6rem 1.2rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background-color: #fbbf24;
+        color: #1e293b;
+      }
+
+      .btn-primary:hover {
+        background-color: #f59e0b;
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: #fbbf24;
+        border: 2px solid #fbbf24;
+      }
+
+      .btn-secondary:hover {
+        background-color: #fbbf24;
+        color: #1e293b;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 140px 0 100px;
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero-content {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        letter-spacing: 1.5px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        color: #bfdbfe;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: nowrap;
+      }
+
+      .hero-buttons .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+        border-radius: 9999px;
+        font-weight: 700;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .hero-buttons .btn-primary {
+        background-color: #fbbf24;
+        color: #1e293b;
+      }
+
+      .hero-buttons .btn-primary:hover {
+        background-color: #f59e0b;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      .hero-buttons .btn-secondary {
+        background-color: transparent;
+        color: #fbbf24;
+        border: 2px solid #fbbf24;
+      }
+
+      .hero-buttons .btn-secondary:hover {
+        background-color: #fbbf24;
+        color: #1e293b;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      /* Header Buttons */
+      .auth-buttons .btn {
+        padding: 0.6rem 1.4rem;
+        font-size: 1.1rem;
+        border-radius: 12px;
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .auth-buttons .btn-login {
+        background-color: transparent;
+        color: #a3bffa;
+        border: 2px solid #a3bffa;
+        box-shadow: 0 0 8px #a3bffa88;
+      }
+
+      .auth-buttons .btn-login:hover {
+        background-color: #a3bffa;
+        color: #1e293b;
+        box-shadow: 0 6px 20px #a3bffacc;
+        transform: translateY(-2px);
+      }
+
+      .auth-buttons .btn-register {
+        background-color: #fbbf24;
+        color: #1e293b;
+        box-shadow: 0 0 12px #fbbf24cc;
+      }
+
+      .auth-buttons .btn-register:hover {
+        background-color: #f59e0b;
+        box-shadow: 0 6px 20px #fbbf24cc;
+        transform: translateY(-2px);
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        letter-spacing: 1.5px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        color: #bfdbfe;
+      }
+
+      .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      
+
+      /* Ideas Section */
+      .ideas {
+        background-color: #f9fafb;
+        padding: 80px 0;
+      }th
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 3rem;
+      }
+
+      .ideas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 1140px;
+        margin: 0 auto;
+      }
+
+      .idea-item {
+        background-color: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .idea-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .idea-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2563eb;
+        margin-bottom: 0.75rem;
+      }
+
+      .idea-description {
+        font-size: 1rem;
+        color: #475569;
+        margin-bottom: 1rem;
+        flex-grow: 1;
+      }
+
+      .idea-email {
+        font-weight: 600;
+        color: #2563eb;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .idea-email:hover {
+        text-decoration: underline;
+        color: #1e40af;
+      }
+
+      .like-button {
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 9999px;
+        padding: 0.5rem 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        align-self: flex-start;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .like-button:hover {
+        background-color: #1e40af;
+      }
+
+      .like-button.liked {
+        background-color: #fbbf24;
+        color: #1e293b;
+      }
+
+      .like-button.liked:hover {
+        background-color: #f59e0b;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: row;
+          gap: 1rem;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .nav {
+          flex-direction: row;
+          gap: 1rem;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-buttons {
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          flex-wrap: nowrap;
+        }
+
+        .ideas-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       body {
@@ -33,9 +316,9 @@
       /* Header */
       .header {
         background: #2d3a4a;
-        color: white;
+        left: 0;
+        right: 0;
         padding: 1rem 0;
-        position: fixed;
         width: 100%;
         top: 0;
         z-index: 1000;
@@ -65,7 +348,7 @@
       .nav {
         display: flex;
         align-items: center;
-        gap: 2rem;
+        gap: 3rem;
       }
 
       .nav-link {
@@ -91,7 +374,6 @@
         text-decoration: none;
         font-weight: 600;
         transition: all 0.3s;
-        display: inline-block;
         border: none;
         cursor: pointer;
       }
@@ -140,50 +422,57 @@
 
       /* Hero Section */
       .hero {
-        padding: 120px 0 80px;
-        background: linear-gradient(135deg, #2d3a4a 0%, #0a66c2 100%);
+        padding: 140px 0 100px;
+        background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
         color: white;
         text-align: center;
         position: relative;
         overflow: hidden;
+        box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+        border-radius: 0 0 50px 50px;
       }
 
       .hero::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff22" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-        opacity: 0.1;
+        top: -20%;
+        left: -20%;
+        width: 140%;
+        height: 140%;
+        background: radial-gradient(circle at center, #3b82f6 0%, transparent 70%);
+        opacity: 0.3;
+        filter: blur(80px);
+        z-index: 1;
       }
 
       .hero-content {
         position: relative;
         z-index: 2;
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
         padding: 0 20px;
       }
 
       .hero-title {
-        font-size: 3.5rem;
+        font-size: 4rem;
         margin-bottom: 1rem;
-        font-weight: 800;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       }
 
       .hero-subtitle {
-        font-size: 1.3rem;
-        margin-bottom: 2rem;
-        color: #b6c6ff;
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+        color: #bfdbfe;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
 
       .hero-buttons {
         display: flex;
-        gap: 1rem;
+        gap: 1.5rem;
         justify-content: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
       }
 
       .hero-image {
@@ -194,7 +483,7 @@
         display: flex;
         justify-content: center;
         gap: 2rem;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
       }
 
       .idea-card {
@@ -453,29 +742,151 @@
       /* Responsive Design */
       @media (max-width: 768px) {
         .header-content {
-          flex-direction: column;
+          flex-direction: row;
           gap: 1rem;
+          align-items: center;
+          justify-content: space-between;
         }
 
         .nav {
-          flex-direction: column;
+          flex-direction: row;
           gap: 1rem;
         }
 
         .hero-title {
-          font-size: 2.5rem;
+          font-size: 3rem;
         }
 
         .hero-buttons {
-          flex-direction: column;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          flex-wrap: nowrap;
+        }
+
+        .idea-cards {
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      /* Additional CSS for posts section */
+      .ideas {
+        background: #ffffff;
+        padding: 60px 0;
+      }
+
+      .ideas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .idea-item {
+        background: #f9f9f9;
+        border-radius: 15px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .idea-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .idea-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #0a66c2;
+        font-weight: 700;
+      }
+
+      .idea-description {
+        color: #444;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+
+      .idea-email {
+        color: #0a66c2;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .idea-email:hover {
+        text-decoration: underline;
+      }
+
+      .like-button:hover {
+        background-color: #0a66c2;
+        color: white;
+        box-shadow: 0 4px 12px rgba(10, 102, 194, 0.6);
+      }
+
+      .like-button.liked {
+        background-color: #0a66c2;
+        color: white;
+        box-shadow: 0 4px 12px rgba(10, 102, 194, 0.6);
+      }
+
+      .like-button.liked:hover {
+        background-color: #084a8a;
+        box-shadow: 0 6px 16px rgba(8, 74, 138, 0.8);
+      }
+
+      /* Header Like Button */
+      .header .like-button {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        padding: 0.3rem 0.6rem;
+        border-radius: 12px;
+        box-shadow: none;
+        transition: color 0.3s, background-color 0.3s;
+      }
+
+      .header .like-button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #b6c6ff;
+      }
+
+      .header .like-button.liked {
+        color: #b6c6ff;
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .header .like-button.liked:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+
+        .nav {
+          flex-direction: row;
+          gap: 3rem;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        } 
+
+        .hero-buttons {
+          flex-direction: row;
           align-items: center;
         }
 
         .idea-cards {
-          flex-direction: column;
+          flex-direction: row;
           align-items: center;
+          justify-content: center;
+          gap: 2rem;
         }
-      }
+      
     </style>
   </head>
   <body>
@@ -624,22 +1035,105 @@
             window.location.href = "register/register.html";
           });
         }
+
+        // Load like.js for like button functionality
+        const script = document.createElement("script");
+        script.src = "like.js";
+        document.body.appendChild(script);
+
+        // Add event delegation for like buttons
+        document.getElementById("ideasGrid").addEventListener("click", async (event) => {
+          if (event.target && event.target.classList.contains("like-button")) {
+            const postId = event.target.getAttribute("data-post-id");
+            // Assuming userId is available globally or from auth context
+            const userId = window.currentUserId || null;
+            if (!userId) {
+              alert("Please log in to like posts.");
+              return;
+            }
+            try {
+              const result = await toggleLike(postId, userId);
+              const likeCountElement = document.getElementById(`like-count-${postId}`);
+              if (result.liked) {
+                event.target.classList.add("liked");
+              } else {
+                event.target.classList.remove("liked");
+              }
+              likeCountElement.textContent = result.likesCount;
+            } catch (error) {
+              alert("Error toggling like. Please try again.");
+            }
+          }
+        });
       });
 
-      // Function to load ideas
-      function loadIdeas() {
-        const ideasGrid = document.getElementById("ideasGrid");
+      // Function to format relative time
+      function formatRelativeTime(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffMs = now - date;
+  const diffSeconds = Math.floor(diffMs / 1000);
+  const diffMinutes = Math.floor(diffSeconds / 60);
+  const diffHours = Math.floor(diffMinutes / 60);
+  const diffDays = Math.floor(diffHours / 24);
+  const diffMonths = Math.floor(diffDays / 30.44);
+  const diffYears = Math.floor(diffDays / 365.25);
 
-        sampleIdeas.forEach((idea) => {
-          const ideaElement = document.createElement("div");
-          ideaElement.className = "idea-item";
-          ideaElement.innerHTML = `
-          <h3 class="idea-title">${idea.title}</h3>
-          <p class="idea-description">${idea.description}</p>
-          <a href="mailto:${idea.email}" class="idea-email">Contact: ${idea.email}</a>
-      `;
-          ideasGrid.appendChild(ideaElement);
-        });
+  if (diffMinutes < 5) {
+    return "Just now";
+  } else if (diffMinutes < 60) {
+    return `${diffMinutes} minute${diffMinutes !== 1 ? "s" : ""} ago`;
+  } else if (diffHours < 24) {
+    return `${diffHours} hour${diffHours !== 1 ? "s" : ""} ago`;
+  } else if (diffDays < 30.44) {
+    return `${diffDays} day${diffDays !== 1 ? "s" : ""} ago`;
+  } else if (diffMonths < 12) {
+    return `${diffMonths} month${diffMonths !== 1 ? "s" : ""} ago`;
+  } else {
+    return `${diffYears} year${diffYears !== 1 ? "s" : ""} ago`;
+  }
+}
+
+      // Function to load ideas
+      async function loadIdeas() {
+        const ideasGrid = document.getElementById("ideasGrid");
+        ideasGrid.innerHTML = "<p>Loading posts...</p>";
+
+        try {
+          const response = await fetch("http://localhost:3000/api/posts");
+          if (!response.ok) {
+            throw new Error("Failed to fetch posts");
+          }
+          const posts = await response.json();
+
+          if (posts.length === 0) {
+            ideasGrid.innerHTML = "<p>No posts available.</p>";
+            return;
+          }
+
+          ideasGrid.innerHTML = "";
+          posts.forEach((post) => {
+            const ideaElement = document.createElement("div");
+            ideaElement.className = "idea-item";
+            const userId = window.currentUserId || null;
+            const userLiked = userId && post.likes && post.likes.includes(userId);
+            ideaElement.innerHTML = `
+              ${post.image ? `<img src="${post.image}" alt="Post Image" style="max-width: 100%; border-radius: 8px;" />` : ""}
+              <h3 class="idea-title">${post.title}</h3>
+              <p class="idea-description">${post.description}</p>
+              ${post.link ? `<a href="${post.link}" class="idea-link" target="_blank" rel="noopener noreferrer">View More</a>` : ""}
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="post-time">${formatRelativeTime(post.createdAt)}</div>
+              </div>
+              <a href="mailto:${post.email}" class="idea-email">Contact: ${post.email}</a>
+              <button class="like-button ${userLiked ? "liked" : ""}" data-post-id="${post._id}" style="margin-top: 0.5rem;">Like</button>
+              <span class="like-count" id="like-count-${post._id}">${post.likes ? post.likes.length : 0}</span>
+            `;
+            ideasGrid.appendChild(ideaElement);
+          });
+        } catch (error) {
+          ideasGrid.innerHTML = `<p>Error loading posts: ${error.message}</p>`;
+        }
       }
 
       // Smooth scrolling for navigation links
@@ -711,31 +1205,7 @@
         });
       });
 
-       document.oncontextmenu = () => {
-        alert("Right-click is disabled on this page.");
-        return false;
-    }
-    document.onkeydown = (e) => {
-        if (e.key === "F12") {
-            alert("Inspect Element is disabled on this page.");
-            return false;
-        }
-        if (e.ctrlKey && e.shiftKey && e.key === "u") {
-            alert("Inspect Element is disabled on this page.");
-            return false;
-        }
-
-        if (e.ctrlKey && e.key === "c") {
-            alert("View Source is disabled on this page.");
-            return false;
-        }
-        if (e.ctrlKey && e.key === "v") {
-            alert("Saving this page is disabled.");
-            return false;
-        }
-    }
-
-
+      
       
     </script>
   </body>

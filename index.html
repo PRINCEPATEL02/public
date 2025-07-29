@@ -1100,7 +1100,7 @@
         ideasGrid.innerHTML = "<p>Loading posts...</p>";
 
         try {
-          const response = await fetch("http://localhost:3000/api/posts");
+          const response = await fetch("https://my-backend-ba5m.onrender.com/api/posts");
           if (!response.ok) {
             throw new Error("Failed to fetch posts");
           }
